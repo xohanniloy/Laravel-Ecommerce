@@ -1,0 +1,13 @@
+on .env add this variable
+UPLOAD_PATH=/Users/shahadat/downloads/shared/uploads
+
+on config/filesystem.php
+'shared' => [
+    'driver' => 'local',
+    'root' => env('UPLOAD_PATH', storage_path('app/shared')),
+    'url' => env('APP_URL').'/shared',
+    'visibility' => 'public'
+],
+
+on cmd 
+ln -s /Users/shahadat/downloads/shared/uploads /Users/shahadat/Desktop/Ecommerce/AdminApp/public/shared
