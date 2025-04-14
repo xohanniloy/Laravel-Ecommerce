@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SSLCommerzCredential extends Model
 {
-    protected $table = "SSLcommerz_credentials";
+    protected $table = "sslcommerz_credentials";
 
     protected $fillable = [
         'store_id', 'store_password', 'currency', 'success_url',

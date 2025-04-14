@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('SSLcommerz_credentials', function (Blueprint $table) {
+        Schema::create('sslcommerz_credentials', function (Blueprint $table) {
             $table->id();
             $table->string('store_id')->nullable();
             $table->string('store_password')->nullable();
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('init_url')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
