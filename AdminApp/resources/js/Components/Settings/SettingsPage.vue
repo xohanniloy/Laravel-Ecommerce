@@ -1,6 +1,11 @@
 <script setup>
-import { useForm, usePage } from '@inertiajs/vue3';
+import { useForm, usePage, router } from '@inertiajs/vue3';
+import { createToaster } from "@meforma/vue-toaster";
 
+const toaster = createToaster({
+	position: "top-right",
+	duration: 3000,
+});
 const form = useForm({
 	store_id: '',
 	store_password: '',
@@ -14,6 +19,7 @@ const form = useForm({
 
 const page = usePage();
 const settingsx = page.props.setting;
+
 form.store_id = settingsx.store_id;
 form.store_password = settingsx.store_password;
 form.currency = settingsx.currency;
@@ -23,7 +29,18 @@ form.cancel_url = settingsx.cancel_url;
 form.ipn_url = settingsx.ipn_url;
 form.init_url = settingsx.init_url;
 
-
+const submitForm = () => {
+	form.put(`/settings/${settingsx.id}`, {
+		onSuccess: () => {
+			if (page.props.flash?.status == true) {
+				toaster.success(page.props.flash?.message || 'Profile updated successfully');
+				router.get("/settings");
+			} else {
+				toaster.error(page.props.flash?.message || "Profile update failed. Please check your credentials.");
+			}
+		}
+	});
+}
 
 
 </script>
