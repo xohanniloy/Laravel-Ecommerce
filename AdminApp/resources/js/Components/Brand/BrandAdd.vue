@@ -29,7 +29,9 @@ const submitBrand = () => {
 
 <template>
        <h2 class="text-2xl font-bold mb-6">Add Brand</h2>
+      
     <form @submit.prevent="submitBrand" class="bg-white shadow-md rounded-lg p-6">
+        <div class="mb-4 flex justify-end"> <Link :href="'/brands'" class="bg-blue-500 text-white px-4 py-2 rounded-md">Back</Link></div>
       <div class="mb-4">
         <label for="brand-name" class="block text-gray-700 font-bold mb-2">Name</label>
         <input v-model="form.name" type="text" id="brand-name" class="w-full p-2 border rounded-md" placeholder="Enter brand name" required>

@@ -1,5 +1,6 @@
 <script setup>
-import { Link, usePage, router } from '@inertiajs/vue3';
+import ImageUpload from './ImageUpload.vue';
+import { Link, usePage, useForm, router } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
 import { ref } from 'vue';
 
@@ -8,72 +9,49 @@ const toaster = createToaster({
     duration: 3000,
 });
 const page = usePage();
-const brands = page.props.brands;
+const brand = page.props.brand;
+const form = useForm({
+    name: brand.name,
+    image: brand.image,
+    '_method': 'PUT',
+});
+
 const Header = [
     { text: "Image", value: "image" },
     { text: "Name", value: "name" },
     { text: "Action", value: "action" },
 ];
-const Item = ref(page.props.brands);
-const searchValue = ref();
-const searchField = ref();
+const Item = ref(page.props.brand);
 
+const submitEdit = () => {
+    form.post(`/brands/${brand.id}`, {
+        onSuccess: () => {
+            if (page.props.flash?.status == true) {
+                toaster.success(page.props.flash?.message || 'Brand updated successfully');
+                router.get("/brands");
+            } else {
+                toaster.error(page.props.flash?.message || "Brand update failedx. Please check your credentials.");
+            }
+        },
+    });
+};
 
-const deleteBrand = (id) => {
-    let text = "Do you went to delete"
-    if (confirm(text) === true) {
-        router.get(`/brands/${id}/delete`);
-        toaster.success(page.props.flash?.message || "Customer Deleted successfully");
-    } else {
-        text = "you canceled!";
-    }
-}
 </script>
 
 <template>
-    <!-- Page Header with Search and Add Button -->
-    <!-- Page Title with Bottom Border -->
-    <div class="border-b border-gray-300 pb-2 mb-4">
-        <h2 class="text-2xl font-bold text-gray-800">Brands</h2>
-    </div>
-
-    <!-- Search + Add Brand Button -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-        <!-- Search Input -->
-        <input placeholder="Search..."
-            class="w-full md:w-64 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            type="text" v-model="searchValue" />
-
-        <!-- Add Brand Button -->
-        <Link href="/brands/create"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow transition duration-300">
-        Add Brand
-        </Link>
-    </div>
-
-
-    <!-- Table Card -->
-    <div class="bg-white shadow-md rounded-lg p-6">
-        <EasyDataTable show-index buttons-pagination alternating :headers="Header" :items="Item" :rows-per-page="10"
-            :search-field="searchField" :search-value="searchValue">
-            <template #item-image="{ image }">
-                <div class="flex items-center py-2">
-                    <img :src="image" :alt="image" class="w-10 h-10 object-cover rounded-md border border-gray-300" />
-                </div>
-            </template>
-
-            <template #item-action="{ id }">
-                <div class="flex items-center gap-2">
-                    <Link class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm shadow"
-                        :href="`/brands/${id}/edit`">
-                    Edit
-                    </Link>
-                    <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm shadow"
-                        @click="DeleteClick(id)">
-                        Delete
-                    </button>
-                </div>
-            </template>
-        </EasyDataTable>
-    </div>
+    <h2 class="text-2xl font-bold mb-6">Edit Brand</h2>
+  
+ <form @submit.prevent="submitEdit" class="bg-white shadow-md rounded-lg p-6">
+    <div class="mb-4 flex justify-end"> <Link :href="'/brands'" class="bg-blue-500 text-white px-4 py-2 rounded-md">Back</Link></div>
+   <div class="mb-4">
+     <label for="brand-name" class="block text-gray-700 font-bold mb-2">Name</label>
+     <input v-model="form.name" type="text" id="brand-name" class="w-full p-2 border rounded-md" placeholder="Enter brand name" required>
+   </div>
+   <div class="mb-4">
+     <label for="brand-image" class="block text-gray-700 font-bold mb-2">Image</label>
+     <!-- <input type="file" id="brand-image" class="w-full p-2 border rounded-md" required> -->
+     <ImageUpload :productImg="form.image" @image="(e) => form.image = e" />
+   </div>
+   <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Update Brand</button>
+ </form>
 </template>

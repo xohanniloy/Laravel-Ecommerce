@@ -13,16 +13,16 @@
 /* Customize NProgress Bar */
 #nprogress .bar {
     height: 5px !important;
-    background: #41b883 !important; /* Change progress bar color */
+    background: #2c7fff !important; /* Change progress bar color */
 }
 
 /* Customize NProgress Spinner */
 #nprogress .spinner-icon {
-    border-top-color: #41b883 !important;
-    border-left-color: #41b883 !important;
+    border-top-color: #2c7fff !important;
+    border-left-color: #2c7fff !important;
 }
 
 /* Customize NProgress Background */
 #nprogress .peg {
-    box-shadow: 0 0 10px #41b883, 0 0 5px #41b883 !important;
+    box-shadow: 0 0 10px #2c7fff, 0 0 5px #2c7fff !important;
 }

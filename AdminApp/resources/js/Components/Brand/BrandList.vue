@@ -8,7 +8,6 @@ const toaster = createToaster({
     duration: 3000,
 });
 const page = usePage();
-const brands = page.props.brands;
 const Header = [
     { text: "Image", value: "image" },
     { text: "Name", value: "name" },
@@ -22,8 +21,19 @@ const searchField = ref();
 const deleteBrand = (id) => {
     let text = "Do you went to delete"
     if (confirm(text) === true) {
-        router.get(`/brands/${id}/delete`);
-        toaster.success(page.props.flash?.message || "Customer Deleted successfully");
+        router.delete(`/brands/${id}`, {
+            onSuccess: () => {
+                if (page.props.flash?.status == true) {
+                    toaster.success(page.props.flash?.message || 'Brand deleted successfully');
+                    router.get("/brands");
+                } else {
+                    toaster.error(page.props.flash?.message || "Brand delete failed. Please check your credentials.");
+                }
+            },
+            onError: () => {
+                toaster.error(page.props.flash?.message || "Brand delete failed. Please check your credentials.");
+            }
+        });
     } else {
         text = "you canceled!";
     }
@@ -45,10 +55,13 @@ const deleteBrand = (id) => {
             type="text" v-model="searchValue" />
 
         <!-- Add Brand Button -->
-        <Link href="/brands/create"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow transition duration-300">
+        <Link href="/brands/create" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow transition duration-300">
         Add Brand
         </Link>
+
+        <!-- <Link href="/brands/create" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow transition duration-300">
+        Add Brand
+        </Link> -->
     </div>
 
 
@@ -58,7 +71,7 @@ const deleteBrand = (id) => {
             :search-field="searchField" :search-value="searchValue">
             <template #item-image="{ image }">
                 <div class="flex items-center py-2">
-                    <img :src="image" :alt="image" class="w-10 h-10 object-cover rounded-md border border-gray-300" />
+                    <img :src="image ? image : '/placeholder.png'" :alt="image" class="w-10 h-10 object-cover rounded-md border border-gray-300" />
                 </div>
             </template>
 
@@ -69,7 +82,7 @@ const deleteBrand = (id) => {
                     Edit
                     </Link>
                     <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm shadow"
-                        @click="DeleteClick(id)">
+                        @click="deleteBrand(id)">
                         Delete
                     </button>
                 </div>
