@@ -40,7 +40,7 @@ import { Link } from '@inertiajs/vue3'
 			</div>
 		</aside>
 
-		<main class="ml-64 p-8">
+		<main class="ml-64 p-8 w-1/2">
 			<slot></slot>
 		</main>
 	</div>

@@ -9,3 +9,20 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Customize NProgress Bar */
+#nprogress .bar {
+    height: 5px !important;
+    background: #41b883 !important; /* Change progress bar color */
+}
+
+/* Customize NProgress Spinner */
+#nprogress .spinner-icon {
+    border-top-color: #41b883 !important;
+    border-left-color: #41b883 !important;
+}
+
+/* Customize NProgress Background */
+#nprogress .peg {
+    box-shadow: 0 0 10px #41b883, 0 0 5px #41b883 !important;
+}

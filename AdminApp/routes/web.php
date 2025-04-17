@@ -3,13 +3,17 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SSLCommerzCredentialController;
+
+Route::redirect('/', '/dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'dashboardPage'])->name('dashboard');
 
 // Route::get('/settings', [SSLCommerzCredentialController::class, 'settingsPage'])->name('settings');
 Route::resource('/settings', SSLCommerzCredentialController::class);
+Route::resource('/brands', BrandController::class);
 
 // Show the login form
 Route::get('/login', [UserController::class, 'loginPage'])->name('login');

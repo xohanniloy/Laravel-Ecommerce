@@ -1,6 +1,10 @@
 import './bootstrap';
 import { createApp, h } from 'vue'
+import { router } from "@inertiajs/vue3";
+import NProgress from "nprogress";
 import { createInertiaApp } from '@inertiajs/vue3'
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
 
 createInertiaApp({
   resolve: name => {
@@ -10,6 +14,14 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .component('EasyDataTable', Vue3EasyDataTable)
       .mount(el)
   },
-})
+});
+
+router.on("start", () => {
+  NProgress.start();
+});
+router.on("finish", () => {
+  NProgress.done();
+});
