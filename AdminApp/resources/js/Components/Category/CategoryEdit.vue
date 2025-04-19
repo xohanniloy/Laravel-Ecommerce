@@ -16,13 +16,6 @@ const form = useForm({
     '_method': 'PUT',
 });
 
-const Header = [
-    { text: "Image", value: "image" },
-    { text: "Name", value: "name" },
-    { text: "Action", value: "action" },
-];
-const Item = ref(page.props.category);
-
 const submitEdit = () => {
     form.post(`/categories/${category.id}`, {
         onSuccess: () => {

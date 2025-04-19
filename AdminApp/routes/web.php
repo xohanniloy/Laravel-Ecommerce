@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SSLCommerzCredentialController;
@@ -16,6 +17,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboardPage'])->name('d
 Route::resource('/settings', SSLCommerzCredentialController::class);
 Route::resource('/brands', BrandController::class);
 Route::resource('/categories', CategoryController::class);
+Route::resource('/sliders', SliderController::class);
 
 // Show the login form
 Route::get('/login', [UserController::class, 'loginPage'])->name('login');

@@ -51,41 +51,41 @@ const submitForm = () => {
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="mb-4">
 				<label for="store-id" class="block text-gray-700 font-bold mb-2">Store ID</label>
-				<input type="text" id="store-id" class="w-full p-2 border rounded-md" placeholder="Enter Store ID"
+				<input type="text" id="store-id" class="w-full py-2 px-4 border border-gray-300 rounded-md" placeholder="Enter Store ID"
 					required v-model="form.store_id">
 			</div>
 			<div class="mb-4">
 				<label for="store-password" class="block text-gray-700 font-bold mb-2">Store
 					Password</label>
-				<input type="text" id="store-password" class="w-full p-2 border rounded-md"
+				<input type="text" id="store-password" class="w-full py-2 px-4 border border-gray-300 rounded-md"
 					placeholder="Enter Store Password" required v-model="form.store_password">
 			</div>
 			<div class="mb-4">
 				<label for="currency" class="block text-gray-700 font-bold mb-2">Currency</label>
-				<input type="text" id="currency" class="w-full p-2 border rounded-md" placeholder="Enter Store ID"
+				<input type="text" id="currency" class="w-full py-2 px-4 border border-gray-300 rounded-md" placeholder="Enter Store ID"
 					required v-model="form.currency">
 			</div>
 			<div class="mb-4">
 				<label for="success-url" class="block text-gray-700 font-bold mb-2">Success URL</label>
-				<input type="text" id="success-url" class="w-full p-2 border rounded-md" v-model="form.success_url"
+				<input type="text" id="success-url" class="w-full py-2 px-4 border border-gray-300 rounded-md" v-model="form.success_url"
 					required>
 			</div>
 			<div class="mb-4">
 				<label for="fail-url" class="block text-gray-700 font-bold mb-2">Fail URL</label>
-				<input type="text" id="fail-url" class="w-full p-2 border rounded-md" v-model="form.fail_url" required>
+				<input type="text" id="fail-url" class="w-full py-2 px-4 border border-gray-300 rounded-md" v-model="form.fail_url" required>
 			</div>
 			<div class="mb-4">
 				<label for="cancel-url" class="block text-gray-700 font-bold mb-2">Cancel URL</label>
-				<input type="text" id="cancel-url" class="w-full p-2 border rounded-md" v-model="form.cancel_url"
+				<input type="text" id="cancel-url" class="w-full py-2 px-4 border border-gray-300 rounded-md" v-model="form.cancel_url"
 					required>
 			</div>
 			<div class="mb-4">
 				<label for="ipn-url" class="block text-gray-700 font-bold mb-2">IPN URL</label>
-				<input type="text" id="ipn-url" class="w-full p-2 border rounded-md" v-model="form.ipn_url" required>
+				<input type="text" id="ipn-url" class="w-full py-2 px-4 border border-gray-300 rounded-md" v-model="form.ipn_url" required>
 			</div>
 			<div class="mb-4">
 				<label for="init-url" class="block text-gray-700 font-bold mb-2">INIT URL</label>
-				<input type="text" id="init-url" class="w-full p-2 border rounded-md" v-model="form.init_url" required>
+				<input type="text" id="init-url" class="w-full py-2 px-4 border border-gray-300 rounded-md" v-model="form.init_url" required>
 			</div>
 		</div>
 		<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save Settings</button>

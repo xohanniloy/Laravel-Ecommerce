@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/vue3'
 
 <template>
 	<!-- Sidebar -->
-	<div class="flex h-screen">
+	<div class="h-screen">
 		<aside class="w-64 bg-gray-800 text-white h-screen fixed">
 			<div class="p-4">
 				<h3 class="text-xl font-bold mb-6">Admin Panel</h3>
@@ -40,7 +40,7 @@ import { Link } from '@inertiajs/vue3'
 			</div>
 		</aside>
 
-		<main class="ml-64 p-8 w-1/2">
+		<main class="ml-64 p-8 ">
 			<slot></slot>
 		</main>
 	</div>
