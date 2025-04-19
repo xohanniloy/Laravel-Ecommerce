@@ -13,14 +13,14 @@ const form = useForm({
     image: null
 });
 
-const submitBrand = () => {
-    form.post('/brands', {
+const submitCategory = () => {
+    form.post('/categories', {
         onSuccess: () => {
             if (page.props.flash?.status == true) {
-                toaster.success(page.props.flash?.message || 'Brand added successfully');
-                router.get("/brands");
+                toaster.success(page.props.flash?.message || 'Category added successfully');
+                router.get("/categories");
             } else {
-                toaster.error(page.props.flash?.message || "Brand add failed. Please check your credentials.");
+                toaster.error(page.props.flash?.message || "Category add failed. Please check your credentials.");
             }
         }
     });
@@ -28,10 +28,10 @@ const submitBrand = () => {
 </script>
 
 <template>
-       <h2 class="text-2xl font-bold mb-6">Add Brand</h2>
+       <h2 class="text-2xl font-bold mb-6">Add Category</h2>
       
-    <form @submit.prevent="submitBrand" class="bg-white shadow-md rounded-lg p-6">
-        <div class="mb-4 flex justify-end"> <Link :href="'/brands'" class="bg-blue-500 text-white px-4 py-2 rounded-md">Back</Link></div>
+    <form @submit.prevent="submitCategory" class="bg-white shadow-md rounded-lg p-6">
+        <div class="mb-4 flex justify-end"> <Link :href="'/categories'" class="bg-blue-500 text-white px-4 py-2 rounded-md">Back</Link></div>
       <div class="mb-4">
         <label for="brand-name" class="block text-gray-700 font-bold mb-2">Name</label>
         <input v-model="form.name" type="text" id="brand-name" class="w-full p-2 border rounded-md" placeholder="Enter brand name" required>
@@ -41,6 +41,6 @@ const submitBrand = () => {
         <!-- <input type="file" id="brand-image" class="w-full p-2 border rounded-md" required> -->
         <ImageUpload :productImg="form.image" @image="(e) => form.image = e" />
       </div>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save Brand</button>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save Category</button>
     </form>
 </template>
