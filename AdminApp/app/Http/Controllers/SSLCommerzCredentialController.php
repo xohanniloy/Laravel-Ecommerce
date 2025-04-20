@@ -16,6 +16,8 @@ class SSLCommerzCredentialController extends Controller {
         return Inertia::render( 'Settings', [
             'setting' => $settings,
         ] );
+
+        // return $settings;
     }
 
     /**
